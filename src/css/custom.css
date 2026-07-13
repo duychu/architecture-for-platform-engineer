@@ -1,0 +1,52 @@
+/**
+ * Light styling for readability. The content is diagram-first, so this mostly
+ * tunes reading width, spacing, and diagram/table presentation.
+ */
+
+:root {
+  --ifm-color-primary: #2b6cb0;
+  --ifm-color-primary-dark: #2761a0;
+  --ifm-color-primary-darker: #245b97;
+  --ifm-color-primary-darkest: #1e4b7c;
+  --ifm-color-primary-light: #3277c0;
+  --ifm-color-primary-lighter: #3d7ec5;
+  --ifm-color-primary-lightest: #5a91cf;
+  --ifm-code-font-size: 95%;
+  --ifm-line-height-base: 1.7;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #7cb6f0;
+  --ifm-color-primary-dark: #5aa1eb;
+  --ifm-color-primary-darker: #4997e9;
+  --ifm-color-primary-darkest: #1a77dd;
+  --ifm-color-primary-light: #9ecbf5;
+  --ifm-color-primary-lighter: #afd4f7;
+  --ifm-color-primary-lightest: #e2f0fc;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Comfortable reading measure for prose-heavy pages. */
+.markdown {
+  --ifm-h2-vertical-rhythm-top: 3;
+}
+
+/* Center Mermaid + PlantUML diagrams and give them breathing room. */
+.markdown .docusaurus-mermaid-container,
+.markdown p > img[src*='plantuml'] {
+  display: flex;
+  justify-content: center;
+  margin: 1.75rem auto;
+}
+
+.markdown img[src*='plantuml'] {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Callout used in the template / papers for "critical questions". */
+.markdown table {
+  display: table;
+  width: 100%;
+}
