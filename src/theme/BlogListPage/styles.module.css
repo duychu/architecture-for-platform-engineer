@@ -1,16 +1,10 @@
-/* Helix Docs blog layout — Carbon-styled. */
-
-.page {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 56px 32px 96px;
-  background: var(--cds-background);
-}
+/* Helix Docs blog layout — Carbon-styled. Content renders in BlogLayout's
+   main column; the left Archive timeline is the shared BlogSidebar. */
 
 /* ── Header ─────────────────────────────────────────────────── */
 .header {
   max-width: 640px;
-  margin-bottom: 48px;
+  margin: 8px 0 40px;
 }
 .eyebrow {
   font-size: 12px;
@@ -32,90 +26,6 @@
   line-height: 1.5;
   color: var(--cds-text-secondary);
   margin: 0;
-}
-
-/* ── Two-column layout: timeline + content ──────────────────── */
-.layout {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-.content {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ── Archive timeline (left) ────────────────────────────────── */
-.timeline {
-  width: 220px;
-  flex: none;
-  position: sticky;
-  top: 72px;
-}
-.timelineTitle {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16px;
-  color: var(--cds-text-secondary);
-  margin-bottom: 16px;
-}
-.timelineGroup {
-  margin-bottom: 20px;
-}
-.timelineYear {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--cds-text-primary);
-  margin-bottom: 8px;
-}
-.timelineCount {
-  font-size: 11px;
-  color: var(--cds-text-helper);
-}
-.timelineTrack {
-  position: relative;
-  padding-left: 20px;
-}
-.timelineTrack::before {
-  content: '';
-  position: absolute;
-  left: 3px;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: var(--cds-border-subtle-01);
-}
-.timelineItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 6px 0;
-  color: var(--cds-text-secondary);
-  text-decoration: none;
-  position: relative;
-}
-.timelineItem:hover {
-  color: var(--cds-text-primary);
-  text-decoration: none;
-}
-.dot {
-  position: absolute;
-  left: -20px;
-  top: 11px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--cds-border-strong-01);
-}
-.timelineItem:hover .dot {
-  background: var(--cds-interactive);
-}
-.timelineLabel {
-  font-size: 13px;
-  line-height: 1.35;
 }
 
 /* ── Shared ─────────────────────────────────────────────────── */

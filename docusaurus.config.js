@@ -82,7 +82,7 @@ const config = {
           routeBasePath: '/blog',
           blogTitle: 'The platform engineering blog',
           blogDescription: 'Notes from building the paved road — field reports and decisions.',
-          blogSidebarTitle: 'Recent posts',
+          blogSidebarTitle: 'Archive',
           blogSidebarCount: 'ALL',
           showReadingTime: true,
           postsPerPage: 10,

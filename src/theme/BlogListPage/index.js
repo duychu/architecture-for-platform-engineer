@@ -1,7 +1,8 @@
 /**
  * Custom blog list page — reproduces the "Helix Docs" blog design:
- * a left Archive timeline, a Featured hero card, and a post grid.
- * Overrides @theme/BlogListPage; individual post pages keep the default theme.
+ * a "Featured" hero card + a post grid, rendered inside the standard
+ * BlogLayout so the left Archive timeline (BlogSidebar) is IDENTICAL in
+ * placement and style to the blog detail pages. Overrides @theme/BlogListPage.
  */
 import React from 'react';
 import clsx from 'clsx';
@@ -12,7 +13,7 @@ import {
   ThemeClassNames,
 } from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
+import BlogLayout from '@theme/BlogLayout';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import BlogListPageStructuredData from '@theme/BlogListPage/StructuredData';
@@ -99,43 +100,6 @@ function PostCard({item}) {
   );
 }
 
-function Timeline({items}) {
-  // Group by year (posts arrive newest-first).
-  const groups = [];
-  items.forEach((item) => {
-    const m = meta(item);
-    const year = new Date(m.date).getFullYear();
-    let g = groups.find((x) => x.year === year);
-    if (!g) {
-      g = {year, posts: []};
-      groups.push(g);
-    }
-    g.posts.push(m);
-  });
-
-  return (
-    <aside className={styles.timeline}>
-      <div className={styles.timelineTitle}>Archive</div>
-      {groups.map((g) => (
-        <div key={g.year} className={styles.timelineGroup}>
-          <div className={styles.timelineYear}>
-            {g.year}
-            <span className={styles.timelineCount}>{g.posts.length}</span>
-          </div>
-          <div className={styles.timelineTrack}>
-            {g.posts.map((m) => (
-              <Link key={m.permalink} to={m.permalink} className={styles.timelineItem}>
-                <span className={styles.dot} />
-                <span className={styles.timelineLabel}>{m.title}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      ))}
-    </aside>
-  );
-}
-
 function BlogListPageMetadata(props) {
   const {metadata} = props;
   const {
@@ -153,7 +117,7 @@ function BlogListPageMetadata(props) {
 }
 
 export default function BlogListPage(props) {
-  const {metadata, items} = props;
+  const {metadata, items, sidebar} = props;
   const [featured, ...rest] = items;
   return (
     <HtmlClassNameProvider
@@ -163,32 +127,27 @@ export default function BlogListPage(props) {
       )}>
       <BlogListPageMetadata {...props} />
       <BlogListPageStructuredData {...props} />
-      <Layout>
-        <main className={styles.page}>
-          <header className={styles.header}>
-            <div className={styles.eyebrow}>The platform engineering blog</div>
-            <h1 className={styles.h1}>{metadata.blogTitle}</h1>
-            {metadata.blogDescription && (
-              <p className={styles.lede}>{metadata.blogDescription}</p>
-            )}
-          </header>
+      {/* BlogLayout renders the shared left Archive timeline (BlogSidebar),
+          identical to the detail pages; we supply the main-column content. */}
+      <BlogLayout sidebar={sidebar}>
+        <header className={styles.header}>
+          <div className={styles.eyebrow}>The platform engineering blog</div>
+          <h1 className={styles.h1}>{metadata.blogTitle}</h1>
+          {metadata.blogDescription && (
+            <p className={styles.lede}>{metadata.blogDescription}</p>
+          )}
+        </header>
 
-          <div className={styles.layout}>
-            <Timeline items={items} />
-            <div className={styles.content}>
-              {featured && <Featured item={featured} />}
-              {rest.length > 0 && (
-                <div className={styles.grid}>
-                  {rest.map((item) => (
-                    <PostCard key={meta(item).permalink} item={item} />
-                  ))}
-                </div>
-              )}
-              <BlogListPaginator metadata={metadata} />
-            </div>
+        {featured && <Featured item={featured} />}
+        {rest.length > 0 && (
+          <div className={styles.grid}>
+            {rest.map((item) => (
+              <PostCard key={meta(item).permalink} item={item} />
+            ))}
           </div>
-        </main>
-      </Layout>
+        )}
+        <BlogListPaginator metadata={metadata} />
+      </BlogLayout>
     </HtmlClassNameProvider>
   );
 }
