@@ -49,24 +49,33 @@ function Node({to, active, label, count}) {
 function BlogSidebarDesktop({sidebar}) {
   const items = useVisibleBlogSidebarItems(sidebar.items);
   const months = buildMonths(items);
-  const {pathname} = useLocation();
+  const {pathname, search} = useLocation();
   const blogIndex = useBaseUrl('/blog');
-  const archive = useBaseUrl('/blog/archive');
 
   const onIndex = pathname === blogIndex || pathname === `${blogIndex}/`;
+  const selectedMonth = new URLSearchParams(search).get('m'); // e.g. "2026-6"
   const isPostActive = (m) => m.permalinks.some((p) => p === pathname);
+
+  // Month nodes filter the list in place (?m=key) — same layout, filtered content.
+  const monthActive = (m) =>
+    (onIndex && selectedMonth === m.key) || (!onIndex && isPostActive(m));
 
   return (
     <aside className={styles.sidebar}>
       <nav className={clsx(styles.timeline, 'thin-scrollbar')} aria-label="Blog archive">
         <div className={styles.title}>{sidebar.title}</div>
         <div className={styles.track}>
-          <Node to={blogIndex} active={onIndex} label="All posts" count={items.length} />
+          <Node
+            to={blogIndex}
+            active={onIndex && !selectedMonth}
+            label="All posts"
+            count={items.length}
+          />
           {months.map((m) => (
             <Node
               key={m.key}
-              to={archive}
-              active={!onIndex && isPostActive(m)}
+              to={`${blogIndex}?m=${m.key}`}
+              active={monthActive(m)}
               label={m.label}
               count={m.permalinks.length}
             />

@@ -7,6 +7,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import {useLocation} from '@docusaurus/router';
 import {
   PageMetadata,
   HtmlClassNameProvider,
@@ -22,6 +23,20 @@ import styles from './styles.module.css';
 
 function meta(item) {
   return item.content.metadata;
+}
+
+// Month key matching the sidebar ("YYYY-M", UTC month index).
+function monthKey(dateStr) {
+  const d = new Date(dateStr);
+  return `${d.getUTCFullYear()}-${d.getUTCMonth()}`;
+}
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+function monthLabel(key) {
+  const [y, m] = key.split('-');
+  return `${MONTH_NAMES[Number(m)]} ${y}`;
 }
 
 function readLabel(m) {
@@ -132,7 +147,15 @@ function BlogListPageMetadata(props) {
 
 export default function BlogListPage(props) {
   const {metadata, items, sidebar} = props;
-  const [featured, ...rest] = items;
+  const {search} = useLocation();
+  const selectedMonth = new URLSearchParams(search).get('m');
+
+  // Same layout — just filter the content when a month is selected in the timeline.
+  const visible = selectedMonth
+    ? items.filter((item) => monthKey(meta(item).date) === selectedMonth)
+    : items;
+  const [featured, ...rest] = visible;
+
   return (
     <HtmlClassNameProvider
       className={clsx(
@@ -141,14 +164,22 @@ export default function BlogListPage(props) {
       )}>
       <BlogListPageMetadata {...props} />
       <BlogListPageStructuredData {...props} />
-      {/* BlogLayout renders the shared left Archive timeline (BlogSidebar),
+      {/* BlogLayout renders the shared, flush-left Archive timeline (BlogSidebar),
           identical to the detail pages; we supply the main-column content. */}
       <BlogLayout sidebar={sidebar}>
         <header className={styles.header}>
           <div className={styles.eyebrow}>The platform engineering blog</div>
           <h1 className={styles.h1}>{metadata.blogTitle}</h1>
-          {metadata.blogDescription && (
-            <p className={styles.lede}>{metadata.blogDescription}</p>
+          {selectedMonth ? (
+            <p className={styles.lede}>
+              Showing <strong>{monthLabel(selectedMonth)}</strong>
+              {' · '}
+              <Link to={metadata.permalink || '/blog'}>View all posts</Link>
+            </p>
+          ) : (
+            metadata.blogDescription && (
+              <p className={styles.lede}>{metadata.blogDescription}</p>
+            )
           )}
         </header>
 
@@ -160,7 +191,7 @@ export default function BlogListPage(props) {
             ))}
           </div>
         )}
-        <BlogListPaginator metadata={metadata} />
+        {!selectedMonth && <BlogListPaginator metadata={metadata} />}
       </BlogLayout>
     </HtmlClassNameProvider>
   );

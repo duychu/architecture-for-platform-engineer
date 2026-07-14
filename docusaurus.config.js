@@ -86,7 +86,8 @@ const config = {
           blogSidebarTitle: 'Archive',
           blogSidebarCount: 'ALL',
           showReadingTime: true,
-          postsPerPage: 10,
+          postsPerPage: 20, // keep all posts on one page so month filtering is complete
+          archiveBasePath: null, // remove the default (blue-banner) archive page
           feedOptions: {type: ['rss', 'atom'], xslt: true},
         },
         theme: {

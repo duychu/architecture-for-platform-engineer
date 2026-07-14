@@ -1,5 +1,15 @@
-platform-team:
-  name: Platform Team
-  title: Platform Engineering
-  url: https://github.com/duychu/architecture-for-platform-engineer
-  page: true
+priya:
+  name: Priya N.
+  title: Principal Platform Engineer
+marcus:
+  name: Marcus L.
+  title: Staff Engineer, Developer Platform
+dana:
+  name: Dana K.
+  title: SRE Lead
+wei:
+  name: Wei C.
+  title: Security Engineer
+sam:
+  name: Sam O.
+  title: Operations Engineer
