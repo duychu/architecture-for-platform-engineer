@@ -57,8 +57,9 @@ const config = {
       {
         hashed: true,
         indexDocs: true,
-        indexBlog: false,
+        indexBlog: true,
         docsRouteBasePath: 'docs',
+        blogRouteBasePath: '/blog',
         highlightSearchTermsOnTargetPage: true,
       },
     ],
@@ -77,7 +78,16 @@ const config = {
           remarkPlugins: [[simplePlantUML, {baseUrl: PLANTUML_SERVER}]],
           exclude: ['**/_TEMPLATE.md'], // template is reference-only, not a published page
         },
-        blog: false,
+        blog: {
+          routeBasePath: '/blog',
+          blogTitle: 'The platform engineering blog',
+          blogDescription: 'Notes from building the paved road — field reports and decisions.',
+          blogSidebarTitle: 'Recent posts',
+          blogSidebarCount: 'ALL',
+          showReadingTime: true,
+          postsPerPage: 10,
+          feedOptions: {type: ['rss', 'atom'], xslt: true},
+        },
         theme: {
           // Carbon token bridge first, then the component styling that consumes it.
           customCss: [
@@ -99,6 +109,13 @@ const config = {
         defaultMode: 'dark',
         respectPrefersColorScheme: false,
       },
+      // Collapsible left sidebar (Carbon-style hide/show control).
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: false,
+        },
+      },
       navbar: {
         title: 'Platform Engineering Handbook',
         logo: {
@@ -110,8 +127,11 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'papersSidebar',
             position: 'left',
-            label: 'White Papers',
+            label: 'Docs',
           },
+          {to: '/blog', label: 'Blog', position: 'left'},
+          // Explicit search item controls its position (before version + GitHub).
+          {type: 'search', position: 'right'},
           {
             type: 'dropdown',
             label: 'v1.0',
