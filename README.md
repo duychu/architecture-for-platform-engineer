@@ -14,8 +14,12 @@ behind the decisions — not low-level config.
   structure so the series stays consistent.
 - **First paper:** [Anatomy of an Internal Developer Platform](docs/platform-engineering/internal-developer-platform.md).
 
-Built with [Docusaurus](https://docusaurus.io/). Diagrams use **Mermaid** (default) and
-**PlantUML** (for C4 / deployment / rich component views).
+Built with [Docusaurus](https://docusaurus.io/) and themed with the **IBM Carbon design
+system** (the "Helix Docs" look). Diagrams use **Mermaid** (default) and **PlantUML** (for
+C4 / deployment / rich component views).
+
+> **Routing:** the marketing homepage lives at `/`; the white papers live under **`/docs`**
+> (e.g. `/docs/platform-engineering/internal-developer-platform`).
 
 ## Run it locally
 
@@ -63,6 +67,27 @@ reader's browser **at view time** from a PlantUML server. The default is the pub
   [`docusaurus.config.js`](docusaurus.config.js).
 
 Mermaid has no such dependency — prefer it unless PlantUML is clearly better for the diagram.
+
+## Design & theme (IBM Carbon)
+
+The site reproduces the **"Helix Docs"** design — a faithful IBM Carbon Design System theme —
+without ejecting or swizzling React components. It is driven by:
+
+| Piece | Where |
+| --- | --- |
+| Carbon tokens (palette + white/g100 themes) | [`src/css/carbon-tokens.css`](src/css/carbon-tokens.css) |
+| Infima bridge + component styling | [`src/css/custom.css`](src/css/custom.css) |
+| Custom homepage (hero, tiles, popular) | [`src/pages/index.js`](src/pages/index.js) + `index.module.css` |
+| Navbar / footer / search / color mode | [`docusaurus.config.js`](docusaurus.config.js) |
+
+- **Fonts:** IBM Plex Sans + IBM Plex Mono, loaded from Google Fonts.
+- **Color mode:** **dark-first** (Carbon `g100`, `#161616`) to match the design; a light
+  ("white" theme) toggle is available in the navbar.
+- **Search:** offline local search via
+  [`@easyops-cn/docusaurus-search-local`](https://github.com/easyops-cn/docusaurus-search-local)
+  — the navbar search box, no external service.
+- **Light vs dark** map to Carbon's *white* and *g100* themes; tokens switch on Docusaurus's
+  `html[data-theme]` attribute.
 
 ## Adding a new paper
 

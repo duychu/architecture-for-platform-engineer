@@ -8,9 +8,11 @@ const simplePlantUML = require('@akebifiky/remark-simple-plantuml');
 // a self-hosted PlantUML/Kroki server to remove the public dependency.
 const PLANTUML_SERVER = 'https://www.plantuml.com/plantuml/svg';
 
+const GITHUB_REPO = 'https://github.com/duychu/architecture-for-platform-engineer';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Architecture for Platform Engineers',
+  title: 'Platform Engineering Handbook',
   tagline: 'Diagram-first white papers on system design — high-level, workflow, and tradeoffs',
   favicon: 'img/favicon.svg',
 
@@ -30,6 +32,16 @@ const config = {
     locales: ['en'],
   },
 
+  // IBM Plex Sans + Mono from Google Fonts (the Carbon type stack).
+  stylesheets: [
+    {href: 'https://fonts.googleapis.com', rel: 'preconnect'},
+    {href: 'https://fonts.gstatic.com', rel: 'preconnect', crossorigin: 'anonymous'},
+    {
+      href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap',
+      rel: 'stylesheet',
+    },
+  ],
+
   // Enable Mermaid diagrams rendered natively by the theme.
   markdown: {
     mermaid: true,
@@ -37,7 +49,20 @@ const config = {
       onBrokenMarkdownLinks: 'warn',
     },
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    // Local, offline search — renders the navbar search box and indexes the docs.
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: false,
+        docsRouteBasePath: 'docs',
+        highlightSearchTermsOnTargetPage: true,
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -45,17 +70,20 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: '/', // serve the white papers at the site root
+          routeBasePath: '/docs', // papers live under /docs; the React homepage owns /
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/duychu/architecture-for-platform-engineer/edit/main/',
+          editUrl: `${GITHUB_REPO}/edit/main/`,
           // PlantUML: rewrite ```plantuml fences into <img> tags served by PLANTUML_SERVER.
           remarkPlugins: [[simplePlantUML, {baseUrl: PLANTUML_SERVER}]],
           exclude: ['**/_TEMPLATE.md'], // template is reference-only, not a published page
         },
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          // Carbon token bridge first, then the component styling that consumes it.
+          customCss: [
+            require.resolve('./src/css/carbon-tokens.css'),
+            require.resolve('./src/css/custom.css'),
+          ],
         },
       }),
     ],
@@ -65,10 +93,18 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
-        respectPrefersColorScheme: true,
+        // Dark-first to match the Helix / Carbon g100 design. Visitors can still
+        // toggle to the light (Carbon "white") theme; we don't auto-follow the OS
+        // so first paint reliably matches the intended dark design.
+        defaultMode: 'dark',
+        respectPrefersColorScheme: false,
       },
       navbar: {
-        title: 'Architecture for Platform Engineers',
+        title: 'Platform Engineering Handbook',
+        logo: {
+          alt: 'Platform Engineering Handbook',
+          src: 'img/logo.svg',
+        },
         items: [
           {
             type: 'docSidebar',
@@ -77,9 +113,16 @@ const config = {
             label: 'White Papers',
           },
           {
-            href: 'https://github.com/duychu/architecture-for-platform-engineer',
-            label: 'GitHub',
+            type: 'dropdown',
+            label: 'v1.0',
             position: 'right',
+            items: [{label: 'v1.0 · latest', href: `${GITHUB_REPO}/releases`}],
+          },
+          {
+            href: GITHUB_REPO,
+            position: 'right',
+            className: 'navbar-github-link',
+            'aria-label': 'GitHub repository',
           },
         ],
       },
@@ -87,30 +130,37 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Papers',
+            title: 'Documentation',
             items: [
-              {label: 'Start here', to: '/'},
+              {label: 'Start here', to: '/docs'},
               {
                 label: 'Internal Developer Platform',
-                to: '/platform-engineering/internal-developer-platform',
+                to: '/docs/platform-engineering/internal-developer-platform',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'Resources',
             items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/duychu/architecture-for-platform-engineer',
-              },
+              {label: 'Repository', href: GITHUB_REPO},
+              {label: 'Issues', href: `${GITHUB_REPO}/issues`},
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              {label: 'Contributing', href: `${GITHUB_REPO}/blob/main/README.md`},
+              {label: 'Changelog', href: `${GITHUB_REPO}/commits/main`},
             ],
           },
         ],
-        copyright: `Architecture for Platform Engineers. Built with Docusaurus.`,
+        copyright:
+          '© 2026 Platform Engineering Handbook · Built with Docusaurus and the IBM Carbon design system.',
       },
       prism: {
-        theme: themes.github,
-        darkTheme: themes.dracula,
+        theme: themes.oneLight,
+        darkTheme: themes.oneDark,
+        additionalLanguages: ['bash', 'yaml', 'json'],
       },
       mermaid: {
         theme: {light: 'neutral', dark: 'dark'},

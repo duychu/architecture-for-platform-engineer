@@ -1,0 +1,180 @@
+/**
+ * Carbon IBM Design System — token bridge for Docusaurus.
+ *
+ * Ported from the "Helix Docs" design (Carbon v11). The palette lives under
+ * :root; the semantic tokens are split by Docusaurus color mode:
+ *   - light mode  -> Carbon "white" theme
+ *   - dark mode   -> Carbon "g100" theme
+ * Docusaurus stamps html[data-theme='light'|'dark'], which drives the switch.
+ */
+
+/* ── Palette (mode-independent) ─────────────────────────────── */
+:root {
+  --cds-white: #ffffff;
+  --cds-black: #000000;
+
+  --cds-gray-10: #f4f4f4;
+  --cds-gray-20: #e0e0e0;
+  --cds-gray-30: #c6c6c6;
+  --cds-gray-40: #a8a8a8;
+  --cds-gray-50: #8d8d8d;
+  --cds-gray-60: #6f6f6f;
+  --cds-gray-70: #525252;
+  --cds-gray-80: #393939;
+  --cds-gray-90: #262626;
+  --cds-gray-100: #161616;
+
+  --cds-blue-10: #edf5ff;
+  --cds-blue-20: #d0e2ff;
+  --cds-blue-30: #a6c8ff;
+  --cds-blue-40: #78a9ff;
+  --cds-blue-50: #4589ff;
+  --cds-blue-60: #0f62fe;
+  --cds-blue-70: #0043ce;
+  --cds-blue-80: #002d9c;
+  --cds-blue-90: #001d6c;
+  --cds-blue-100: #001141;
+
+  --cds-red-40: #ff8389;
+  --cds-red-50: #fa4d56;
+  --cds-red-60: #da1e28;
+
+  --cds-green-40: #42be65;
+  --cds-green-50: #24a148;
+  --cds-green-60: #198038;
+
+  --cds-yellow-20: #f1c21b;
+  --cds-yellow-30: #fddc69;
+
+  --cds-cyan-40: #33b1ff;
+  --cds-cyan-50: #1192e8;
+
+  --cds-purple-40: #a56eff;
+  --cds-purple-50: #8a3ffc;
+
+  --cds-teal-40: #08bdba;
+  --cds-teal-50: #009d9a;
+
+  /* Typography */
+  --cds-font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --cds-font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', 'Courier New', monospace;
+}
+
+/* ── White theme (light mode) ───────────────────────────────── */
+:root,
+html[data-theme='light'] {
+  --cds-background: #ffffff;
+  --cds-background-hover: rgba(141, 141, 141, 0.12);
+  --cds-background-active: rgba(141, 141, 141, 0.5);
+  --cds-background-selected: rgba(141, 141, 141, 0.2);
+  --cds-background-inverse: #393939;
+  --cds-background-brand: #0f62fe;
+
+  --cds-layer-01: #f4f4f4;
+  --cds-layer-02: #ffffff;
+  --cds-layer-03: #f4f4f4;
+  --cds-layer-hover-01: #e8e8e8;
+  --cds-layer-active-01: #c6c6c6;
+  --cds-layer-selected-01: #e0e0e0;
+
+  --cds-field-01: #f4f4f4;
+  --cds-field-02: #ffffff;
+  --cds-field-hover-01: #e8e8e8;
+
+  --cds-border-subtle-00: #e0e0e0;
+  --cds-border-subtle-01: #c6c6c6;
+  --cds-border-strong-01: #8d8d8d;
+  --cds-border-interactive: #0f62fe;
+  --cds-border-inverse: #161616;
+
+  --cds-text-primary: #161616;
+  --cds-text-secondary: #525252;
+  --cds-text-placeholder: #a8a8a8;
+  --cds-text-helper: #6f6f6f;
+  --cds-text-on-color: #ffffff;
+  --cds-text-inverse: #ffffff;
+  --cds-text-error: #da1e28;
+
+  --cds-icon-primary: #161616;
+  --cds-icon-secondary: #525252;
+  --cds-icon-on-color: #ffffff;
+  --cds-icon-interactive: #0f62fe;
+
+  --cds-interactive: #0f62fe;
+  --cds-focus: #0f62fe;
+  --cds-focus-inset: #ffffff;
+  --cds-highlight: #d0e2ff;
+
+  --cds-button-primary: #0f62fe;
+  --cds-button-primary-hover: #0050e6;
+  --cds-button-primary-active: #002d9c;
+  --cds-button-secondary: #393939;
+  --cds-button-secondary-hover: #474747;
+
+  --cds-support-error: #da1e28;
+  --cds-support-success: #24a148;
+  --cds-support-warning: #f1c21b;
+  --cds-support-info: #0043ce;
+
+  --cds-overlay: rgba(22, 22, 22, 0.5);
+  --cds-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ── Gray 100 theme (dark mode) ─────────────────────────────── */
+html[data-theme='dark'] {
+  --cds-background: #161616;
+  --cds-background-hover: rgba(141, 141, 141, 0.16);
+  --cds-background-active: rgba(141, 141, 141, 0.4);
+  --cds-background-selected: rgba(141, 141, 141, 0.24);
+  --cds-background-inverse: #f4f4f4;
+  --cds-background-brand: #0f62fe;
+
+  --cds-layer-01: #262626;
+  --cds-layer-02: #393939;
+  --cds-layer-03: #4c4c4c;
+  --cds-layer-hover-01: #333333;
+  --cds-layer-active-01: #525252;
+  --cds-layer-selected-01: #393939;
+
+  --cds-field-01: #262626;
+  --cds-field-02: #393939;
+  --cds-field-hover-01: #333333;
+
+  --cds-border-subtle-00: #393939;
+  --cds-border-subtle-01: #525252;
+  --cds-border-strong-01: #6f6f6f;
+  --cds-border-interactive: #4589ff;
+  --cds-border-inverse: #f4f4f4;
+
+  --cds-text-primary: #f4f4f4;
+  --cds-text-secondary: #c6c6c6;
+  --cds-text-placeholder: #6f6f6f;
+  --cds-text-helper: #8d8d8d;
+  --cds-text-on-color: #ffffff;
+  --cds-text-inverse: #161616;
+  --cds-text-error: #ff8389;
+
+  --cds-icon-primary: #f4f4f4;
+  --cds-icon-secondary: #c6c6c6;
+  --cds-icon-on-color: #ffffff;
+  --cds-icon-interactive: #78a9ff;
+
+  --cds-interactive: #4589ff;
+  --cds-focus: #ffffff;
+  --cds-focus-inset: #161616;
+  --cds-highlight: #001d6c;
+
+  --cds-button-primary: #0f62fe;
+  --cds-button-primary-hover: #0353e9;
+  --cds-button-primary-active: #002d9c;
+  --cds-button-secondary: #6f6f6f;
+  --cds-button-secondary-hover: #606060;
+
+  --cds-support-error: #ff8389;
+  --cds-support-success: #42be65;
+  --cds-support-warning: #f1c21b;
+  --cds-support-info: #4589ff;
+
+  --cds-overlay: rgba(0, 0, 0, 0.65);
+  --cds-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.6);
+}
