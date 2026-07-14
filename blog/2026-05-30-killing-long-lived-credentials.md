@@ -11,7 +11,17 @@ workload that needed it.
 
 <!-- truncate -->
 
+## Identity, not credentials
+
 We migrated to SPIFFE-issued, short-lived workload identities across three regions. Pods now
-receive an identity, not a credential; the mesh mints and rotates it. No long-lived secrets
-live in the workload, and revocation is a control-plane action rather than a secret rotation
-scramble.
+receive an identity, not a credential; the mesh mints and rotates it automatically.
+
+## Revocation becomes a control-plane action
+
+No long-lived secrets live in the workload, so revocation is a control-plane change rather
+than a frantic secret-rotation scramble across every cluster.
+
+## The migration path
+
+We ran both models in parallel, cut over service by service behind a flag, and deleted the
+static credentials only after the identity path carried real traffic.

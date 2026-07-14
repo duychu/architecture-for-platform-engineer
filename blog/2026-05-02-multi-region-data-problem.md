@@ -11,6 +11,16 @@ you make once and live with for years.
 
 <!-- truncate -->
 
-Compute is the easy half — you can add regions. The hard half is data: what is the source of
-truth, how stale can a replica be, and what happens to a write during a partition? Decide the
-consistency model first; the routing config falls out of it, not the other way around.
+## Compute is the easy half
+
+You can add regions. Spinning up more compute is a capacity exercise with a known playbook.
+
+## Data is the hard half
+
+What is the source of truth, how stale can a replica be, and what happens to a write during a
+partition? These are the questions that actually decide your architecture.
+
+## Decide consistency first
+
+Pick the consistency model up front; the routing config falls out of it, not the other way
+around. Teams that start from the load balancer end up rewriting the data layer twice.

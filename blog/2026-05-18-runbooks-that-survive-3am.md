@@ -11,6 +11,17 @@ written, assume it is wrong.
 
 <!-- truncate -->
 
-We make runbooks executable, tested, and boring: each step is a command the on-call can run
-(or a script the platform runs for them), exercised on a schedule so drift is caught in
-daylight, not at 3am. Boring is the goal — surprise is the enemy of recovery.
+## Make them executable
+
+Each step is a command the on-call can run — or a script the platform runs for them. Prose
+that describes what you *should* do is a suggestion; a command is a runbook.
+
+## Test them in daylight
+
+Exercise runbooks on a schedule so drift is caught at noon, not at 3am. A runbook that has not
+been run recently is documentation, not a tool.
+
+## Boring is the goal
+
+Surprise is the enemy of recovery. The best runbook is one the on-call has seen succeed a
+dozen times before the night it matters.

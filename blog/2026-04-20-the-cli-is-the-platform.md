@@ -11,6 +11,17 @@ first three commands they type, not by your architecture diagram.
 
 <!-- truncate -->
 
-Notes on designing a CLI engineers do not fight: verbs match intent, defaults match the common
-case, errors say what to do next, and the same command works locally and in CI. The CLI is the
-product surface — treat it like one.
+## The command surface is the product
+
+Verbs should match intent, and defaults should match the common case. If the first command a
+new engineer runs fails, no diagram will win them back.
+
+## Errors that say what to do next
+
+A good error names the problem and the next command. A bad one prints a stack trace and a
+shrug. The error path is part of the design, not an afterthought.
+
+## Same command everywhere
+
+The same command should work locally and in CI. The moment they diverge, engineers stop
+trusting the CLI and start scripting around it.
