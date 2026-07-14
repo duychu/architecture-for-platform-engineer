@@ -1,0 +1,42 @@
+/* Docs-style blog shell: flush-left sidebar + main content + optional right TOC. */
+
+.shell {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 48px 96px;
+}
+
+/* Constrain the article/list column for readability; the sidebar stays flush-left. */
+.article {
+  max-width: 960px;
+}
+
+.toc {
+  width: 240px;
+  flex: none;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  align-self: flex-start;
+  max-height: calc(100vh - var(--ifm-navbar-height));
+  overflow-y: auto;
+  padding: 32px 24px 40px;
+  border-left: 1px solid var(--cds-border-subtle-00);
+}
+
+@media (max-width: 996px) {
+  .shell {
+    flex-direction: column;
+  }
+  .main {
+    padding: 24px 20px 64px;
+  }
+  .toc {
+    display: none;
+  }
+}

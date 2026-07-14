@@ -57,7 +57,7 @@ function BlogSidebarDesktop({sidebar}) {
   const isPostActive = (m) => m.permalinks.some((p) => p === pathname);
 
   return (
-    <aside className="col col--3">
+    <aside className={styles.sidebar}>
       <nav className={clsx(styles.timeline, 'thin-scrollbar')} aria-label="Blog archive">
         <div className={styles.title}>{sidebar.title}</div>
         <div className={styles.track}>
