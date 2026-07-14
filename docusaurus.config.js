@@ -80,6 +80,7 @@ const config = {
         },
         blog: {
           routeBasePath: '/blog',
+          editUrl: `${GITHUB_REPO}/edit/main/`,
           blogTitle: 'The platform engineering blog',
           blogDescription: 'Notes from building the paved road — field reports and decisions.',
           blogSidebarTitle: 'Archive',

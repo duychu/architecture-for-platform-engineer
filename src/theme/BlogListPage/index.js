@@ -13,6 +13,7 @@ import {
   ThemeClassNames,
 } from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import {useDateTimeFormat} from '@docusaurus/theme-common/internal';
 import BlogLayout from '@theme/BlogLayout';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogListPaginator from '@theme/BlogListPaginator';
@@ -32,6 +33,17 @@ function authorName(m) {
   return (m.authors && m.authors[0] && m.authors[0].name) || 'Platform Team';
 }
 
+// Blog metadata has no `formattedDate` in this version — format `date` ourselves.
+function useFormatDate() {
+  const dtf = useDateTimeFormat({
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+  return (d) => (d ? dtf.format(new Date(d)) : '');
+}
+
 function Tag({label}) {
   return <span className={styles.tag}>{label}</span>;
 }
@@ -49,6 +61,7 @@ function BlogArt() {
 
 function Featured({item}) {
   const m = meta(item);
+  const formatDate = useFormatDate();
   const tag = m.tags && m.tags[0];
   return (
     <Link to={m.permalink} className={styles.featured}>
@@ -64,7 +77,7 @@ function Featured({item}) {
           <div>
             <div className={styles.authorName}>{authorName(m)}</div>
             <div className={styles.authorMeta}>
-              {m.formattedDate}
+              {formatDate(m.date)}
               {readLabel(m) ? ` · ${readLabel(m)}` : ''}
             </div>
           </div>
@@ -79,6 +92,7 @@ function Featured({item}) {
 
 function PostCard({item}) {
   const m = meta(item);
+  const formatDate = useFormatDate();
   const tag = m.tags && m.tags[0];
   return (
     <Link to={m.permalink} className={styles.card}>
@@ -88,7 +102,7 @@ function PostCard({item}) {
       <div className={styles.cardMeta}>
         <span className={styles.cardAuthor}>{authorName(m)}</span>
         <span>·</span>
-        <span>{m.formattedDate}</span>
+        <span>{formatDate(m.date)}</span>
         {readLabel(m) && (
           <>
             <span>·</span>
