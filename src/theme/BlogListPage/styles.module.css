@@ -1,0 +1,279 @@
+/* Helix Docs blog layout — Carbon-styled. */
+
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 56px 32px 96px;
+  background: var(--cds-background);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16px;
+  color: var(--cds-interactive);
+  margin-bottom: 10px;
+}
+.h1 {
+  font-size: clamp(34px, 4.5vw, 48px);
+  line-height: 1.06;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px;
+  color: var(--cds-text-primary);
+}
+.lede {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--cds-text-secondary);
+  margin: 0;
+}
+
+/* ── Two-column layout: timeline + content ──────────────────── */
+.layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Archive timeline (left) ────────────────────────────────── */
+.timeline {
+  width: 220px;
+  flex: none;
+  position: sticky;
+  top: 72px;
+}
+.timelineTitle {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16px;
+  color: var(--cds-text-secondary);
+  margin-bottom: 16px;
+}
+.timelineGroup {
+  margin-bottom: 20px;
+}
+.timelineYear {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+  margin-bottom: 8px;
+}
+.timelineCount {
+  font-size: 11px;
+  color: var(--cds-text-helper);
+}
+.timelineTrack {
+  position: relative;
+  padding-left: 20px;
+}
+.timelineTrack::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--cds-border-subtle-01);
+}
+.timelineItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 6px 0;
+  color: var(--cds-text-secondary);
+  text-decoration: none;
+  position: relative;
+}
+.timelineItem:hover {
+  color: var(--cds-text-primary);
+  text-decoration: none;
+}
+.dot {
+  position: absolute;
+  left: -20px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cds-border-strong-01);
+}
+.timelineItem:hover .dot {
+  background: var(--cds-interactive);
+}
+.timelineLabel {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* ── Shared ─────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: 100px;
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle-01);
+  font-size: 12px;
+  color: var(--cds-text-secondary);
+}
+.excerpt {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--cds-text-secondary);
+  margin: 0;
+}
+
+/* ── Featured card ──────────────────────────────────────────── */
+.featured {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border: 1px solid var(--cds-border-subtle-01);
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 48px;
+  transition: border-color 0.11s;
+}
+.featured:hover {
+  border-color: var(--cds-border-strong-01);
+  text-decoration: none;
+}
+.featuredBody {
+  padding: 36px 36px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.featuredTagRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.featuredFlag {
+  font-size: 12px;
+  color: var(--cds-support-warning);
+  font-weight: 600;
+  letter-spacing: 0.16px;
+}
+.featuredTitle {
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin: 0 0 14px;
+  color: var(--cds-text-primary);
+}
+.author {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--cds-interactive);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  flex: none;
+}
+.authorName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+}
+.authorMeta {
+  font-size: 12px;
+  color: var(--cds-text-helper);
+}
+.featuredArt {
+  background: var(--cds-layer-01);
+  border-left: 1px solid var(--cds-border-subtle-01);
+  position: relative;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Post grid ──────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  /* auto-fit (not auto-fill) so a lone card spans full width instead of
+     leaving empty grid tracks showing through as a gray panel. */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--cds-border-subtle-00);
+  border: 1px solid var(--cds-border-subtle-00);
+}
+.card {
+  background: var(--cds-background);
+  text-decoration: none;
+  color: inherit;
+  padding: 28px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  transition: background 0.11s;
+}
+.card:hover {
+  background: var(--cds-background-hover);
+  text-decoration: none;
+}
+.cardTitle {
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin: 0;
+  color: var(--cds-text-primary);
+}
+.cardMeta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--cds-text-helper);
+}
+.cardAuthor {
+  color: var(--cds-text-secondary);
+  font-weight: 500;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 996px) {
+  .layout {
+    flex-direction: column;
+  }
+  .timeline {
+    position: static;
+    width: 100%;
+  }
+  .featured {
+    grid-template-columns: 1fr;
+  }
+  .featuredArt {
+    display: none;
+  }
+}
