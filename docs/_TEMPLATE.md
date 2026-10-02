@@ -65,6 +65,21 @@ sequenceDiagram
     P-->>Dev: Result + feedback
 ```
 
+<!--
+  OPTIONAL — hands-on series only (e.g. Secrets Management). At most ONE section per paper,
+  placed here. Short, runnable, dev-mode only; delete this block for concept papers.
+
+## Hands-on setup
+
+:::info Hands-on exception
+This series relaxes the house "no config" rule for one short lab per paper. Dev mode only.
+:::
+
+```bash
+# <5–30 lines of commands a reader can run locally>
+```
+-->
+
 ## Design decisions & tradeoffs
 
 <The decisions that actually matter, as tables. Give a default AND the tension.>

@@ -13,6 +13,11 @@ behind the decisions — not low-level config.
 - **A reusable template** ([`docs/_TEMPLATE.md`](docs/_TEMPLATE.md)) that bakes in the house
   structure so the series stays consistent.
 - **First paper:** [Anatomy of an Internal Developer Platform](docs/platform-engineering/internal-developer-platform.md).
+- **First series:** [Secrets Management with Vault / OpenBao](docs/secrets-management/overview.md) —
+  how Vault works, cloud & Kubernetes auth, multi-cloud integration patterns, KV v2 and the
+  database engine. Hands-on series like this one may add **one** clearly marked
+  `Hands-on setup` section per paper (a short dev-mode lab); everything else follows the
+  house style.
 
 Built with [Docusaurus](https://docusaurus.io/) and themed with the **IBM Carbon design
 system** (the "Helix Docs" look). Diagrams use **Mermaid** (default) and **PlantUML** (for

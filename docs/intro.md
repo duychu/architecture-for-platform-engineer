@@ -23,6 +23,8 @@ topic and answers three questions a platform engineer actually cares about:
 
 We stay at the level of **structure, flow, and logic**. You will not find Helm values or
 Terraform blocks here — you *will* find the mental model you need before you write them.
+(One exception: hands-on series such as *Secrets Management* add a single, clearly marked
+**Hands-on setup** section per paper with a short dev-mode lab.)
 
 ## How to read a paper (10 minutes, in this order)
 
@@ -56,6 +58,7 @@ Every paper follows the same spine so you always know where to look. The load is
 | Theme | Status | Papers |
 | --- | --- | --- |
 | Platform / IDP / Golden Paths | ✅ Live | [Anatomy of an Internal Developer Platform](./platform-engineering/internal-developer-platform.md) |
+| Secrets Management (Vault / OpenBao) | ✅ Live (5 of 6 parts) | [Series overview](./secrets-management/overview.md) — how Vault works, cloud auth, integration patterns, KV v2, database engine |
 | Reliability & Observability | 🔜 Planned | SLOs & error budgets, resilience patterns |
 | Scalability & Data | 🔜 Planned | Caching, sharding, consistency tradeoffs |
 | Delivery: K8s, CI/CD, GitOps | 🔜 Planned | Progressive delivery, GitOps flow |

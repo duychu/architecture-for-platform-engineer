@@ -26,6 +26,13 @@ const TILES = [
     live: true,
   },
   {
+    title: 'Secrets Management (Vault / OpenBao)',
+    desc: 'How Vault works, cloud & Kubernetes auth, multi-cloud integration patterns, KV v2 and dynamic database credentials.',
+    cta: 'Read the series',
+    to: '/docs/secrets-management/overview',
+    live: true,
+  },
+  {
     title: 'Reliability & Observability',
     desc: 'SLI/SLO/SLA, error budgets, and resilience patterns — retries, circuit breakers, bulkheads.',
     cta: 'Planned',
@@ -47,12 +54,6 @@ const TILES = [
     title: 'The white-paper template',
     desc: 'The reusable, diagram-first spine every paper follows — copy it to write a new one.',
     cta: 'How papers are built',
-    to: '/docs',
-  },
-  {
-    title: 'How to read these papers',
-    desc: 'A 10-minute path through each paper — big picture, workflow, tradeoffs, critical questions.',
-    cta: 'Start here',
     to: '/docs',
   },
 ];
